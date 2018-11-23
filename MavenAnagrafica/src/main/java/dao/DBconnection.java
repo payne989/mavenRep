@@ -12,6 +12,7 @@ public class DBconnection {
 	public static Connection createConnection() throws SQLException {
 		
 		String driver = "com.mysql.jdbc.Driver";
+		//a bello
 		
 		String url = "jdbc:mysql://localhost:3306/appazienda";
 		
