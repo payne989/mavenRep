@@ -1,0 +1,238 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://webservices/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="ContoWSService" targetNamespace="http://webservices/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://webservices/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://webservices/">
+  <xs:element name="deleteConto" type="tns:deleteConto"/>
+  <xs:element name="deleteContoResponse" type="tns:deleteContoResponse"/>
+  <xs:element name="insertConto" type="tns:insertConto"/>
+  <xs:element name="insertContoResponse" type="tns:insertContoResponse"/>
+  <xs:element name="selectAllConto" type="tns:selectAllConto"/>
+  <xs:element name="selectAllContoResponse" type="tns:selectAllContoResponse"/>
+  <xs:element name="selectIdConto" type="tns:selectIdConto"/>
+  <xs:element name="selectIdContoResponse" type="tns:selectIdContoResponse"/>
+  <xs:complexType name="deleteConto">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="deleteContoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:responseBase"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="responseBase">
+    <xs:sequence>
+      <xs:element name="errorCode" type="xs:int"/>
+      <xs:element minOccurs="0" name="errorDesc" type="xs:string"/>
+      <xs:element minOccurs="0" name="result" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="selectAllConto">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="selectAllContoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:responseSelectAllConto"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="responseSelectAllConto">
+    <xs:complexContent>
+      <xs:extension base="tns:responseBase">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="list" nillable="true" type="tns:conto"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="conto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="datain" type="xs:anySimpleType"/>
+      <xs:element name="idconto" type="xs:int"/>
+      <xs:element name="idimp" type="xs:int"/>
+      <xs:element name="saldo" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertConto">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:double"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:anySimpleType"/>
+      <xs:element name="arg2" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertContoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:responseBase"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="selectIdConto">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="selectIdContoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:responseConto"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="responseConto">
+    <xs:complexContent>
+      <xs:extension base="tns:responseBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="co" type="tns:conto"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SQLException" type="tns:SQLException"/>
+  <xs:complexType name="SQLException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="errorCode" type="xs:int"/>
+      <xs:element minOccurs="0" name="sQLState" type="xs:string"/>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NamingException" type="tns:NamingException"/>
+  <xs:complexType name="NamingException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="resolvedObj" type="xs:anyType"/>
+      <xs:element minOccurs="0" name="explanation" type="xs:string"/>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatatypeConfigurationException" type="tns:DatatypeConfigurationException"/>
+  <xs:complexType name="DatatypeConfigurationException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="selectAllConto">
+    <wsdl:part element="tns:selectAllConto" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="selectAllContoResponse">
+    <wsdl:part element="tns:selectAllContoResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="NamingException">
+    <wsdl:part element="tns:NamingException" name="NamingException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteContoResponse">
+    <wsdl:part element="tns:deleteContoResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="insertConto">
+    <wsdl:part element="tns:insertConto" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="insertContoResponse">
+    <wsdl:part element="tns:insertContoResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteConto">
+    <wsdl:part element="tns:deleteConto" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SQLException">
+    <wsdl:part element="tns:SQLException" name="SQLException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DatatypeConfigurationException">
+    <wsdl:part element="tns:DatatypeConfigurationException" name="DatatypeConfigurationException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="selectIdConto">
+    <wsdl:part element="tns:selectIdConto" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="selectIdContoResponse">
+    <wsdl:part element="tns:selectIdContoResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ContoWS">
+    <wsdl:operation name="deleteConto">
+      <wsdl:input message="tns:deleteConto" name="deleteConto">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteContoResponse" name="deleteContoResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="selectAllConto">
+      <wsdl:input message="tns:selectAllConto" name="selectAllConto">
+    </wsdl:input>
+      <wsdl:output message="tns:selectAllContoResponse" name="selectAllContoResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertConto">
+      <wsdl:input message="tns:insertConto" name="insertConto">
+    </wsdl:input>
+      <wsdl:output message="tns:insertContoResponse" name="insertContoResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="selectIdConto">
+      <wsdl:input message="tns:selectIdConto" name="selectIdConto">
+    </wsdl:input>
+      <wsdl:output message="tns:selectIdContoResponse" name="selectIdContoResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DatatypeConfigurationException" name="DatatypeConfigurationException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:SQLException" name="SQLException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:NamingException" name="NamingException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ContoWSServiceSoapBinding" type="tns:ContoWS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="deleteConto">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="deleteConto">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteContoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="selectAllConto">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="selectAllConto">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="selectAllContoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertConto">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="insertConto">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="insertContoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="selectIdConto">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="selectIdConto">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="selectIdContoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DatatypeConfigurationException">
+        <soap:fault name="DatatypeConfigurationException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SQLException">
+        <soap:fault name="SQLException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="NamingException">
+        <soap:fault name="NamingException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ContoWSService">
+    <wsdl:port binding="tns:ContoWSServiceSoapBinding" name="ContoWSPort">
+      <soap:address location="http://localhost:8080/contocorrente/ContoWS"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

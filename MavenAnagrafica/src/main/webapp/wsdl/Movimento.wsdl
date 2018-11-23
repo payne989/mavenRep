@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://webservices/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="MovimentoWSService" targetNamespace="http://webservices/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://webservices/" elementFormDefault="unqualified" targetNamespace="http://webservices/" version="1.0">
+
+  <xs:element name="createMovimento" type="tns:createMovimento"/>
+
+  <xs:element name="createMovimentoResponse" type="tns:createMovimentoResponse"/>
+
+  <xs:element name="selectMovimento" type="tns:selectMovimento"/>
+
+  <xs:element name="selectMovimentoResponse" type="tns:selectMovimentoResponse"/>
+
+  <xs:complexType name="createMovimento">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+      <xs:element name="arg1" type="xs:int"/>
+      <xs:element name="arg2" type="xs:double"/>
+      <xs:element minOccurs="0" name="arg3" type="xs:anySimpleType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createMovimentoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:responseBase"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="responseBase">
+    <xs:sequence>
+      <xs:element name="errorCode" type="xs:int"/>
+      <xs:element minOccurs="0" name="errorDesc" type="xs:string"/>
+      <xs:element minOccurs="0" name="result" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="selectMovimento">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="selectMovimentoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:responseSelectMovimento"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="responseSelectMovimento">
+    <xs:complexContent>
+      <xs:extension base="tns:responseBase">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="list" nillable="true" type="tns:movimento"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="movimento">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="data" type="xs:anySimpleType"/>
+      <xs:element name="idconto" type="xs:int"/>
+      <xs:element name="idmov" type="xs:int"/>
+      <xs:element name="idtipo" type="xs:int"/>
+      <xs:element name="importo" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="createMovimento">
+    <wsdl:part element="tns:createMovimento" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="selectMovimento">
+    <wsdl:part element="tns:selectMovimento" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createMovimentoResponse">
+    <wsdl:part element="tns:createMovimentoResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="selectMovimentoResponse">
+    <wsdl:part element="tns:selectMovimentoResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="MovimentoWS">
+    <wsdl:operation name="createMovimento">
+      <wsdl:input message="tns:createMovimento" name="createMovimento">
+    </wsdl:input>
+      <wsdl:output message="tns:createMovimentoResponse" name="createMovimentoResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="selectMovimento">
+      <wsdl:input message="tns:selectMovimento" name="selectMovimento">
+    </wsdl:input>
+      <wsdl:output message="tns:selectMovimentoResponse" name="selectMovimentoResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MovimentoWSServiceSoapBinding" type="tns:MovimentoWS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="createMovimento">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="createMovimento">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createMovimentoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="selectMovimento">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="selectMovimento">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="selectMovimentoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MovimentoWSService">
+    <wsdl:port binding="tns:MovimentoWSServiceSoapBinding" name="MovimentoWSPort">
+      <soap:address location="http://localhost:8080/contocorrente/MovimentoWS"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

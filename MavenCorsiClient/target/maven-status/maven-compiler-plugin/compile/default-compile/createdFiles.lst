@@ -1,0 +1,15 @@
+dto\EdizioneDTO.class
+ejbInterfaces\DocenteejbRemote.class
+ejbInterfaces\SedeejbRemote.class
+dto\FrequenzeDTO.class
+ejbInterfaces\CorsoejbLocal.class
+ejbInterfaces\FrequenzeejbLocal.class
+dto\SedeDTO.class
+dto\DocenteDTO.class
+ejbInterfaces\DocenteejbLocal.class
+ejbInterfaces\EdizioneejbRemote.class
+ejbInterfaces\EdizioneejbLocal.class
+ejbInterfaces\CorsoejbRemote.class
+ejbInterfaces\SedeejbLocal.class
+dto\CorsoDTO.class
+ejbInterfaces\FrequenzeejbRemote.class
