@@ -1,4 +1,5 @@
 <%@ page import="model.Impiegato"%>
+<%@ page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -27,6 +28,7 @@
 			
 			<input type="hidden" name="funzione" value="aggiorna"> 
 			<input type="submit" value="Aggiorna">
+			
 			<input type="hidden" name="funzione" value="cancella"> 
 			<input type="submit" value="Cancella"> <br>
 

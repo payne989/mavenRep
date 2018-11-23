@@ -1,4 +1,6 @@
-<%@ page import="model.Ruolo"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.mysql.fabric.xmlrpc.base.Array"%>
+<%@page import="model.Ruolo"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -7,31 +9,50 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Risultato Impiegato singolo</title>
+<title>Risultato Ruolo Multipla</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="home.jsp">Proxima Informatica</a>
 	</nav>
-	<div class="container-fluid">
-		<form action="ImpiegatoServlet" method="get">
+
+	<form action="ImpiegatoServlet" method="get">
+		<%
+			ArrayList<Ruolo> ruoList = (ArrayList<Ruolo>) request.getAttribute("ruolo");
+		%>
+
+		<table class="table table-striped">
+<thead class="thead-dark">
+
+			<tr>
+				<th scope="col">Id</th>
+				<th scope="col">NomeRuolo</th>
+				<th scope="col">Stipendio</th>
+				
+			</tr>
+</thead>
+<tbody>
+			<%
+				for (Ruolo r : ruoList) {
+			%>
+			<tr>
+				
+				<td><%=r.getId()%></td>
+				<td><%=r.getNomeRuolo()%></td>
+				<td><%=r.getStipendio()%></td>
+				
+			</tr>
+
 
 			<%
-				Ruolo ruo = (Ruolo) request.getAttribute("impiegato");
+				}
 			%>
-			<b>Id: </b><input type="text" name="id" value="<%=ruo.getId()%>"readonly> <br> <br> 
-			<b>Nome Ruolo: </b><input type="text" name="nomeruolo" value="<%=ruo.getNomeRuolo()%>"> <br><br> 
-			<b>Stipendio: </b><input type="text" name="stipendio"value="<%=ruo.getStipendio()%>"> <br> <br> 
-	
-			
-			<input type="hidden" name="funzione" value="aggiorna"> 
-			<input type="submit" value="Aggiorna">
-			<input type="hidden" name="funzione" value="cancella"> 
-			<input type="submit" value="Cancella"> <br>
+</tbody>
+		</table>
 
-		</form>
-	</div>
+	</form>
+
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>

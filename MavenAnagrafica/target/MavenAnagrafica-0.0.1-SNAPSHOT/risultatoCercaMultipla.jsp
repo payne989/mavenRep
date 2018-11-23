@@ -30,6 +30,7 @@
 				<th scope="col">Codice Fiscale</th>
 				<th scope="col">Nome</th>
 				<th scope="col">Cognome</th>
+				<th scope="col">Azione</th>
 			</tr>
 </thead>
 <tbody>
@@ -42,9 +43,16 @@
 				<td><%=i.getCodFisc()%></td>
 				<td><%=i.getNome()%></td>
 				<td><%=i.getCognome()%></td>
+				<td><a href="modificaImpiegato.jsp?id=<%=i.getId()%>&nome=<%=i.getNome()%>&cognome=<%=i.getCognome()%>&codfisc=<%=i.getCodFisc()%>" 
+				class="btn btn-dark" role="button">Aggiorna</a>
+			
+			<a href="ImpiegatoServlet?funzione=cancella" class="btn btn-dark" role="button">Cancella</a> </td>
+			
+			
 			</tr>
 
-
+			
+			
 			<%
 				}
 			%>

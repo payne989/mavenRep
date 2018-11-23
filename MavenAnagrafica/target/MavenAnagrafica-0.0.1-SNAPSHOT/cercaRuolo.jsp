@@ -23,15 +23,14 @@
 
 	<div class="container-fluid">
 		<form action="RuoloServlet" method="get">
-			<font>Ricerca tramite ID:</font><br> <input type="text"
-				name="id"> <br> <input type="hidden" name="funzione"
+			<font>Ricerca tramite ID:</font><br> 
+			<input type="text" name="id"> <br> <input type="hidden" name="funzione"
 				value="cerca"> <input type="submit" value="Cerca"><br>
 		</form>
 
 		<br>
 		<form action="RuoloServlet" method="get">
-			<font>Ricerca tramite Nome:</font><br> <input
-				type="text" name="nome"> <br> <input
+			<font>Ricerca tramite Nome:</font><br> <input type="text" name="nomeRuolo"> <br> <input
 				type="hidden" name="funzione" value="cercanome"> <input
 				type="submit" value="Cerca"><br>
 		</form>
