@@ -1,11 +1,11 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -18,7 +18,7 @@ import utility.Util;
 
 public class MovimentoDao {
 
-	public static Movimento creaMovimento(int idTipo, int idConto, double importo, XMLGregorianCalendar data)
+	public static Movimento creaMovimento(int idTipo, int idConto, double importo, Date data)
 			throws SQLException, NamingException {
 
 		Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/MYDSSQL")).getConnection();
@@ -32,7 +32,7 @@ public class MovimentoDao {
 			preparedStatement.setInt(1, idTipo);
 			preparedStatement.setInt(2, idConto);
 			preparedStatement.setDouble(3, importo);
-			preparedStatement.setDate(4, Util.xmlToSqlDate(data));
+			preparedStatement.setDate(4, data);
 			preparedStatement.executeUpdate();
 
 			ContoDao.modificaConto(idConto, importo);
@@ -50,7 +50,7 @@ public class MovimentoDao {
 			preparedStatement.setInt(1, idTipo);
 			preparedStatement.setInt(2, idConto);
 			preparedStatement.setDouble(3, importo);
-			preparedStatement.setDate(4, Util.xmlToSqlDate(data));
+			preparedStatement.setDate(4,data);
 
 			preparedStatement.executeUpdate();
 
@@ -85,7 +85,7 @@ public class MovimentoDao {
 			mov.setIdtipo(res.getInt("idtipo"));
 			mov.setIdconto(idConto);
 			mov.setImporto(res.getDouble("importo"));
-			mov.setData(Util.sqlToXmlDate(res.getDate("data")));
+			mov.setData(res.getDate("data"));
 
 			movList.add(mov);
 

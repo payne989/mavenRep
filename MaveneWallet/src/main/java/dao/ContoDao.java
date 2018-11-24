@@ -57,7 +57,7 @@ public class ContoDao {
 
 			co.setIdconto(res.getInt("idconto"));
 			co.setSaldo(res.getInt("saldo"));
-			co.setDatain(Util.sqlToXmlDate(res.getDate("datain")));
+			co.setDatain(res.getDate("datain"));
 			co.setSaldo(res.getInt("saldo"));
 			co.setIdimp(res.getInt("idimp"));
 
@@ -91,7 +91,7 @@ public class ContoDao {
 			if (res.next()) {
 				co.setIdconto(idConto);
 				co.setSaldo(res.getDouble("saldo"));
-				co.setDatain(Util.sqlToXmlDate(res.getDate("datain")));
+				co.setDatain(res.getDate("datain"));
 				co.setIdimp(res.getInt("idimp"));
 
 				System.out.println(co);
