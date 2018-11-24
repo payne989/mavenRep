@@ -2,13 +2,13 @@ package model;
 
 public class Impiegato {
 	private Integer id;
-	private String codFisc;
+	private String cf;
 	private String nome;
 	private String cognome;
 
 	public Impiegato(Integer id, String codFisc, String nome, String cognome) {
 		this.id = id;
-		this.codFisc = codFisc;
+		this.cf = codFisc;
 		this.nome = nome;
 		this.cognome = cognome;
 	}
@@ -24,11 +24,11 @@ public class Impiegato {
 	}
 
 	public String getCodFisc() {
-		return codFisc;
+		return cf;
 	}
 
 	public void setCodFisc(String codFisc) {
-		this.codFisc = codFisc;
+		this.cf = codFisc;
 	}
 
 	public String getNome() {
@@ -49,7 +49,7 @@ public class Impiegato {
 
 	@Override
 	public String toString() {
-		return " id " + id + "\n Nome " + nome + "\n Cognome " + cognome + "\n Codice Fiscale " + codFisc;
+		return " id " + id + "\n Nome " + nome + "\n Cognome " + cognome + "\n Codice Fiscale " + cf;
 	}
 
 }
