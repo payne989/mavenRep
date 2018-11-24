@@ -1,0 +1,19 @@
+package ejb;
+
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import ejbInterfaces.RuoloejbLocal;
+import ejbInterfaces.RuoloejbRemote;
+
+@Stateless
+@LocalBean
+public class Storicoejb implements RuoloejbRemote, RuoloejbLocal {
+
+	@PersistenceContext(unitName = "Hib4PU")
+	private EntityManager em;
+	
+	public Storicoejb() {}
+}

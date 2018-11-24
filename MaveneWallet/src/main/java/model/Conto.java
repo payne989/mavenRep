@@ -2,20 +2,22 @@ package model;
 
 
 
-import javax.xml.datatype.XMLGregorianCalendar;
+import java.util.Date;
+
+
 
 public class Conto {
 
 	private int idConto;
 	private double saldo;
-	private XMLGregorianCalendar datain;
+	private Date dataIn;
 	private int idImp;
 
-	public Conto(int idConto, int saldo, XMLGregorianCalendar dataIn, int idImp) {
+	public Conto(int idConto, int saldo, Date dataIn, int idImp) {
 
 		this.idConto = idConto;
 		this.saldo = saldo;
-		this.datain = dataIn;
+		this.dataIn = dataIn;
 		this.idImp = idImp;
 
 	}
@@ -39,12 +41,12 @@ public class Conto {
 		this.saldo = saldo;
 	}
 
-	public XMLGregorianCalendar getDatain() {
-		return datain;
+	public Date getDatain() {
+		return dataIn;
 	}
 
-	public void setDatain(XMLGregorianCalendar date) {
-		this.datain = date;
+	public void setDatain(Date date) {
+		this.dataIn = date;
 	}
 
 	public int getIdimp() {

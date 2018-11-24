@@ -1,8 +1,8 @@
 package model;
 
-import java.sql.Date;
+import java.util.Date;
 
-import javax.xml.datatype.XMLGregorianCalendar;
+
 
 public class Movimento {
 
@@ -10,9 +10,9 @@ public class Movimento {
 	private int idTtipo;
 	private int idConto;
 	private double importo;
-	private XMLGregorianCalendar data;
+	private Date data;
 
-	public Movimento(int idMov, int idTipo, int idConto, double importo, XMLGregorianCalendar data) {
+	public Movimento(int idMov, int idTipo, int idConto, double importo, Date data) {
 
 		this.idMov = idMov;
 		this.idTtipo = idTipo;
@@ -56,11 +56,11 @@ public class Movimento {
 		this.importo = importo;
 	}
 
-	public XMLGregorianCalendar getData() {
+	public Date getData() {
 		return data;
 	}
 
-	public void setData(XMLGregorianCalendar data) {
+	public void setData(Date data) {
 		this.data = data;
 	}
 
