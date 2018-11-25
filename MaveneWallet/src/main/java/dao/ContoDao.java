@@ -10,7 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.sql.DataSource;
 
-import model.Conto;
+import modelJpa.Conto;
 
 
 

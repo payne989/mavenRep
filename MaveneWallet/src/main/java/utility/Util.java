@@ -54,10 +54,10 @@ public class Util {
 	
 	}
 
-	public static ArrayList<ContoDTO> convertContoJPAList(ArrayList<Conto> coList) {
+	public static ArrayList<ContoDTO> convertContoJPAList(ArrayList<Conto> arrayList) {
 
 		ArrayList<ContoDTO> coListDto = new ArrayList<ContoDTO>();
-		Iterator<Conto> a = coList.iterator();
+		Iterator<Conto> a = arrayList.iterator();
 		while (a.hasNext()) {
 			coListDto.add(convertContoJPA(a.next()));
 		}
