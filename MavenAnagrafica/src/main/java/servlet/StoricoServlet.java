@@ -1,15 +1,14 @@
 package servlet;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
+import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import dao.StoricoDao;
-import model.Storico;
+import dto.StoricoDTO;
+import ejbInterfaces.StoricoejbRemote;
 import utiliy.Util;
 
 /**
@@ -19,6 +18,9 @@ import utiliy.Util;
 public class StoricoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	@Resource(mappedName = "java:jboss/exported/MavenAnagrafica-0.0.1-SNAPSHOT/Storicoejb!ejbInterfaces.StoricoejbRemote")
+	private StoricoejbRemote storicoejb;
+	
 	public StoricoServlet() {
 		// TODO Auto-generated constructor stub
 	}
@@ -32,40 +34,36 @@ public class StoricoServlet extends HttpServlet {
 
 		if (funzione.equals("inserisci")) {
 
+			
+			int idRuo = Integer.parseInt(request.getParameter("idruolo"));
+			int idImp = Integer.parseInt(request.getParameter("idimpiegato"));
 			String stringDataInizio = request.getParameter("datainizio");
 			String stringDataFine = request.getParameter("datafine");
-			int idRuolo = Integer.parseInt(request.getParameter("idruolo"));
-			int idImpiegato = Integer.parseInt(request.getParameter("idimpiegato"));
+			
+			java.util.Date dataIn = Util.stringToUtilDate(stringDataInizio);
+			java.util.Date dataFin = Util.stringToUtilDate(stringDataFine);
 
-			java.sql.Date dataInizio = Util.stringToDate(stringDataInizio);
-			java.sql.Date dataFine = Util.stringToDate(stringDataFine);
-
-			Storico stor = new Storico(0, dataInizio, dataFine, idRuolo, idImpiegato);
-
-			try {
-				StoricoDao.insert(stor);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
+			StoricoDTO stor = new StoricoDTO();
+			stor.setIdImpiegato(idImp);
+			stor.setIdRuolo(idRuo);
+			stor.setDataInizio(dataIn);
+			stor.setDataFine(dataFin);
+			
+			storicoejb.insertStorico(stor);
 
 		}
 
 		else if (funzione.equals("cerca")) {
 
-			int id = Integer.parseInt(request.getParameter("id"));
-			StoricoDao.researchByIdImp(id);
+			
 		}
 
 		else if (funzione.equals("cancella")) {
 
 			int id = Integer.parseInt(request.getParameter("id"));
-			try {
-				StoricoDao.delete(id);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
+				storicoejb.deleteStoricoByID(id);
 		}
 
 		else if (funzione.equals("aggiorna"))
@@ -73,23 +71,22 @@ public class StoricoServlet extends HttpServlet {
 		{
 
 			try {
+				
 				int id = Integer.parseInt(request.getParameter("id"));
-				String stringDataInizio = request.getParameter("datainizio");
-				String stringDataFine = request.getParameter("datafine");
-				int idRuolo = Integer.parseInt(request.getParameter("idruolo"));
-				int idImpiegato = Integer.parseInt(request.getParameter("idimpiegato"));
+				String stringDataIn = request.getParameter("datainizio");
+				String stringDataFin= request.getParameter("datafine");
+				int idRuo = Integer.parseInt(request.getParameter("idruolo"));
+				int idImp = Integer.parseInt(request.getParameter("idimpiegato"));
 
-				java.sql.Date dataInizio = Util.stringToDate(stringDataInizio);
-				java.sql.Date dataFine = Util.stringToDate(stringDataFine);
+				java.util.Date dataInizio = Util.stringToUtilDate(stringDataIn);
+				java.util.Date dataFine = Util.stringToUtilDate(stringDataFin);
 
-				StoricoDao.update(id, dataInizio, dataFine, idRuolo, idImpiegato);
+				storicoejb.updateStorico(id, idImp, idRuo, dataInizio, dataFine);
+			
 			} catch (NumberFormatException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			} 
 
 		}
 

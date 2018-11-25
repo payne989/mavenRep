@@ -18,6 +18,7 @@ import utility.Converter;
 public class Corsoejb implements CorsoejbRemote, CorsoejbLocal {
 
 	@PersistenceContext(unitName = "Hib4PU")
+	
 	private EntityManager em;
 
 	public Corsoejb() {}

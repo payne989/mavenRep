@@ -30,50 +30,50 @@ public class MovimentoDao {
 		this.em = em;
 	}
 
-	public static Movimento creaMovimento(int idTipo, int idConto, double importo, Date data)
-			throws SQLException, NamingException {
-
-		Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/MYDSSQL")).getConnection();
-
-		if (idTipo == 1) {
-
-			String qry = "INSERT INTO movimento	(idtipo, idconto, importo, data) VALUES (?,?,?,?)";
-
-			PreparedStatement preparedStatement = con.prepareStatement(qry);
-
-			preparedStatement.setInt(1, idTipo);
-			preparedStatement.setInt(2, idConto);
-			preparedStatement.setDouble(3, importo);
-			preparedStatement.setDate(4, data);
-			preparedStatement.executeUpdate();
-
-			ContoDao.modificaConto(idConto, importo);
-
-			System.out.println("Record is created into movimento chart!");
-			System.out.println("Saldo Updated!");
-		}
-
-		else if (idTipo == 2) {
-
-			String qry = "INSERT INTO movimento	(idtipo, idconto, importo, data) VALUES (?,?,?,?)";
-
-			PreparedStatement preparedStatement = con.prepareStatement(qry);
-
-			preparedStatement.setInt(1, idTipo);
-			preparedStatement.setInt(2, idConto);
-			preparedStatement.setDouble(3, importo);
-			preparedStatement.setDate(4, data);
-
-			preparedStatement.executeUpdate();
-
-			ContoDao.modificaConto(idConto, importo);
-
-			System.out.println("Record is created into movimento chart!");
-			System.out.println("Saldo Updated!");
-		}
-		return null;
-
-	}
+//	public static Movimento creaMovimento(int idTipo, int idConto, double importo, Date data)
+//			throws SQLException, NamingException {
+//
+//		Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/MYDSSQL")).getConnection();
+//
+//		if (idTipo == 1) {
+//
+//			String qry = "INSERT INTO movimento	(idtipo, idconto, importo, data) VALUES (?,?,?,?)";
+//
+//			PreparedStatement preparedStatement = con.prepareStatement(qry);
+//
+//			preparedStatement.setInt(1, idTipo);
+//			preparedStatement.setInt(2, idConto);
+//			preparedStatement.setDouble(3, importo);
+//			preparedStatement.setDate(4, data);
+//			preparedStatement.executeUpdate();
+//
+//			ContoDao.modificaConto(idConto, importo);
+//
+//			System.out.println("Record is created into movimento chart!");
+//			System.out.println("Saldo Updated!");
+//		}
+//
+//		else if (idTipo == 2) {
+//
+//			String qry = "INSERT INTO movimento	(idtipo, idconto, importo, data) VALUES (?,?,?,?)";
+//
+//			PreparedStatement preparedStatement = con.prepareStatement(qry);
+//
+//			preparedStatement.setInt(1, idTipo);
+//			preparedStatement.setInt(2, idConto);
+//			preparedStatement.setDouble(3, importo);
+//			preparedStatement.setDate(4, data);
+//
+//			preparedStatement.executeUpdate();
+//
+//			ContoDao.modificaConto(idConto, importo);
+//
+//			System.out.println("Record is created into movimento chart!");
+//			System.out.println("Saldo Updated!");
+//		}
+//		return null;
+//
+//	}
 
 	public static ArrayList<Movimento> selectAll(int idConto)
 			throws SQLException, NamingException, DatatypeConfigurationException {
@@ -108,8 +108,10 @@ public class MovimentoDao {
 
 		return movList;
 	}
-
+	//Metodo Lista movimenti missing
+	//metodo crea movimento ??
 	
+	//metodo bonifico/prelievo ??
 
 
 }

@@ -34,7 +34,7 @@ public class StoricoDao {
 
 	}
 
-	//public static ArrayList<Storico> researchByIdImp(int idImp) 
+	//public static ArrayList<Storico> researchByIdImp(int idImp) missing
 	
 	public boolean updateStorico(int id, int idImp, int idRuo, Date dataIn, Date dataFin) {
 

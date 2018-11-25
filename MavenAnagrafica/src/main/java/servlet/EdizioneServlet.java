@@ -37,8 +37,8 @@ public class EdizioneServlet extends HttpServlet {
 			String idCorso_str = request.getParameter("idcorso");
 			String idDocente_str = request.getParameter("iddocente");
 			String idSede_str = request.getParameter("idsede");
-			java.sql.Date dataIn = Util.stringToDate(request.getParameter("datain"));
-			java.sql.Date dataFin = Util.stringToDate(request.getParameter("datafin"));
+			java.sql.Date dataIn = Util.stringToSQLDate(request.getParameter("datain"));
+			java.sql.Date dataFin = Util.stringToSQLDate(request.getParameter("datafin"));
 
 			if (idCorso_str != null && idDocente_str != null && idSede_str != null && dataIn != null
 					&& dataFin != null) {
@@ -65,8 +65,8 @@ public class EdizioneServlet extends HttpServlet {
 			String id_str = request.getParameter("id");
 			String idDocente_str = request.getParameter("iddocente");
 			String idSede_str = request.getParameter("idsede");
-			java.sql.Date dataIn = Util.stringToDate(request.getParameter("datain"));
-			java.sql.Date dataFin = Util.stringToDate(request.getParameter("datafin"));
+			java.sql.Date dataIn = Util.stringToSQLDate(request.getParameter("datain"));
+			java.sql.Date dataFin = Util.stringToSQLDate(request.getParameter("datafin"));
 
 			if (id_str != null && idDocente_str != null && idSede_str != null && dataIn != null && dataFin != null) {
 				try {
