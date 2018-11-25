@@ -7,15 +7,13 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import dao.CorsoDao;
 import dao.ImpiegatoDao;
-import dto.CorsoDTO;
 import dto.ImpiegatoDTO;
 import ejbInterfaces.ImpiegatoejbLocal;
 import ejbInterfaces.ImpiegatoejbRemote;
-import modelJpa.Corso;
 import modelJpa.Impiegato;
-import utility.Converter;
+import utiliy.Converter;
+
 
 @Stateless
 @LocalBean
@@ -57,37 +55,54 @@ public class Impiegatoejb implements ImpiegatoejbRemote, ImpiegatoejbLocal {
 
 	}
 
-	public boolean deleteCorsoByID(int id) {
+	public boolean deleteImpByID(int id) {
 
-		ImpiegatoDao cdao = new ImpiegatoDao(em);
+		ImpiegatoDao idao = new ImpiegatoDao(em);
 
-		cdao.delete(id);
+		idao.delete(id);
 
 		return true;
 	}
 
+	public ArrayList<ImpiegatoDTO> selectImpiegatoByNome(String nome) {
+
+		ImpiegatoDao cdao = new ImpiegatoDao(em);
+
+		return Converter.convertImpiegatoJPAList(cdao.selectByNome(nome));
+	}
 	
+	public ArrayList<ImpiegatoDTO> selectImpiegatoByCognome(String cognome) {
+
+		ImpiegatoDao cdao = new ImpiegatoDao(em);
+
+		return Converter.convertImpiegatoJPAList(cdao.selectByCognome(cognome));
 	}
 
+	public ImpiegatoDTO selectImpiegatoByCf(String cf) {
 
+		ImpiegatoDao cdao = new ImpiegatoDao(em);
 
+		return Converter.convertImpiegatoJPA(cdao.selectByCf(cf));
 
+	}
 
+	public ImpiegatoDTO selectImpiegatoById(int id) {
 
+		ImpiegatoDao cdao = new ImpiegatoDao(em);
 
+		return Converter.convertImpiegatoJPA(cdao.selectById(id));
+	}
 
+	public ArrayList<ImpiegatoDTO> selectAllImpiegato() {
 
+		ImpiegatoDao cdao = new ImpiegatoDao(em);
 
-
-
-
-
-
-
-
-
+		return Converter.convertImpiegatoJPAList(cdao.SelectAllImp());
+	}
 
 
 
 
 }
+
+

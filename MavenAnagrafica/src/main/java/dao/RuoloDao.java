@@ -38,7 +38,7 @@ public class RuoloDao {
 		return new ArrayList<Ruolo>(qry.getResultList());
 	}
 
-	public boolean update(Ruolo ruo) {
+	public boolean updateRuolo(Ruolo ruo) {
 
 		try {
 			em.merge(ruo);
@@ -49,9 +49,9 @@ public class RuoloDao {
 		return true;
 	}
 
-	public boolean insertRuo(Impiegato imp) {
+	public boolean insertRuolo(Ruolo ru) {
 		try {
-			em.persist(imp);
+			em.persist(ru);
 		} catch (Exception e) {
 
 			e.printStackTrace();
@@ -61,7 +61,7 @@ public class RuoloDao {
 
 	}
 
-	public boolean delete(int id) {
+	public boolean deleteRuolo(int id) {
 
 		Impiegato impRes = em.find(Impiegato.class, id);
 

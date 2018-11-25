@@ -9,14 +9,26 @@ import java.util.Date;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.XMLGregorianCalendar;
 
 import model.Movimento;
-import utility.Util;
+
+
 
 public class MovimentoDao {
+
+	private EntityManager em;
+
+	public MovimentoDao() {
+		super();
+	}
+
+	public MovimentoDao(EntityManager em) {
+		super();
+		this.em = em;
+	}
 
 	public static Movimento creaMovimento(int idTipo, int idConto, double importo, Date data)
 			throws SQLException, NamingException {
@@ -50,7 +62,7 @@ public class MovimentoDao {
 			preparedStatement.setInt(1, idTipo);
 			preparedStatement.setInt(2, idConto);
 			preparedStatement.setDouble(3, importo);
-			preparedStatement.setDate(4,data);
+			preparedStatement.setDate(4, data);
 
 			preparedStatement.executeUpdate();
 
@@ -60,10 +72,11 @@ public class MovimentoDao {
 			System.out.println("Saldo Updated!");
 		}
 		return null;
-		
+
 	}
 
-	public static ArrayList<Movimento> selectAll(int idConto) throws SQLException, NamingException, DatatypeConfigurationException {
+	public static ArrayList<Movimento> selectAll(int idConto)
+			throws SQLException, NamingException, DatatypeConfigurationException {
 
 		ArrayList<Movimento> movList = new ArrayList<Movimento>();
 
@@ -74,7 +87,7 @@ public class MovimentoDao {
 		PreparedStatement preparedStatement = con.prepareStatement(qry);
 
 		preparedStatement.setInt(1, idConto);
-		
+
 		ResultSet res = preparedStatement.executeQuery();
 
 		while (res.next()) {
@@ -95,4 +108,8 @@ public class MovimentoDao {
 
 		return movList;
 	}
+
+	
+
+
 }

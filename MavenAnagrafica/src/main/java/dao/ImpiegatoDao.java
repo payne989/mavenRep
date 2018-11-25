@@ -20,7 +20,7 @@ public class ImpiegatoDao {
 
 	public Impiegato selectById(int id) {
 		try {
-			return em.find(modelJpa.Impiegato.class, id);
+			return em.find(Impiegato.class, id);
 		} catch (Exception e) {
 
 			e.printStackTrace();
@@ -48,7 +48,7 @@ public class ImpiegatoDao {
 		return new ArrayList<Impiegato>(qry.getResultList());
 	}
 
-	public ArrayList<Impiegato> researchByCognome(String cognome) {
+	public ArrayList<Impiegato> selectByCognome(String cognome) {
 
 		TypedQuery<Impiegato> qry = em.createQuery("SELECT imp FROM IMPIEGATO imp WHERE imp.cognome LIKE :cognome",
 				Impiegato.class);

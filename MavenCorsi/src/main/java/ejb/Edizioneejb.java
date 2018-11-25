@@ -32,7 +32,7 @@ public class Edizioneejb implements EdizioneejbRemote, EdizioneejbLocal {
     	Date dataIn = ed.getDataIn();
     	Date dataFin = ed.getDataFin();
     	
-    	EdizioneDao edao = new EdizioneDao();
+    	EdizioneDao edao = new EdizioneDao(em);
 		
 		edao.insertEdizione(idCorso, idDocente, idSede, dataIn, dataFin);
 		

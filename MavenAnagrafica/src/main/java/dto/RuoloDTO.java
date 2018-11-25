@@ -4,14 +4,17 @@ public class RuoloDTO {
 
 	private int id;
 	private String nomeRuolo;
-	private int stipendio;
+	private double stipendio;
 
-	public RuoloDTO(int id, String nomeRuolo, int stipendio) {
+	public RuoloDTO(int id, String nomeRuolo, double stipendio) {
 
 		this.id = id;
 		this.nomeRuolo = nomeRuolo;
 		this.stipendio = stipendio;
 
+	}
+
+	public RuoloDTO() {
 	}
 
 	public int getId() {
@@ -30,12 +33,13 @@ public class RuoloDTO {
 		this.nomeRuolo = nomeRuolo;
 	}
 
-	public int getStipendio() {
+
+	public double getStipendio() {
 		return stipendio;
 	}
 
-	public void setStipendio(int stipendio) {
-		this.stipendio = stipendio;
+	public void setStipendio(double d) {
+		this.stipendio = d;
 	}
 	@Override
 	public String toString() {

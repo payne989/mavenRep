@@ -1,10 +1,14 @@
 package utility;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
-
+import java.util.Iterator;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
+import dto.ContoDTO;
+import modelJpa.Conto;
+
 
 public class Util {
 
@@ -34,4 +38,47 @@ public class Util {
 		}
 		return sqlDate;
 		}
+
+
+	public static ContoDTO convertContoJPA(Conto co) {
+
+		ContoDTO cdto = new ContoDTO();
+
+		cdto.setIdconto(co.getIdconto());
+		cdto.setSaldo(co.getSaldo());
+		cdto.setDatain(co.getDatain());
+		cdto.setIdimp(co.getIdimp());
+	
+		return cdto;
+	
+	
+	}
+
+	public static ArrayList<ContoDTO> convertContoJPAList(ArrayList<Conto> coList) {
+
+		ArrayList<ContoDTO> coListDto = new ArrayList<ContoDTO>();
+		Iterator<Conto> a = coList.iterator();
+		while (a.hasNext()) {
+			coListDto.add(convertContoJPA(a.next()));
+		}
+		return coListDto;
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

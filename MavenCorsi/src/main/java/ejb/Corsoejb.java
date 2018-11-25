@@ -20,8 +20,7 @@ public class Corsoejb implements CorsoejbRemote, CorsoejbLocal {
 	@PersistenceContext(unitName = "Hib4PU")
 	private EntityManager em;
 
-	public Corsoejb() {
-	}
+	public Corsoejb() {}
 
 	public boolean insertCorso(String nome) {
 

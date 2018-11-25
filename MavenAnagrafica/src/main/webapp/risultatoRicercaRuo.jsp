@@ -1,6 +1,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.mysql.fabric.xmlrpc.base.Array"%>
-<%@page import="model.Ruolo"%>
+<%@page import="modelJpa.Ruolo"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>

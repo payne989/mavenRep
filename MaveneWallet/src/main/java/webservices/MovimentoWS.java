@@ -20,37 +20,37 @@ import response.ResponseSelectMovimento;
 @WebService
 public class MovimentoWS {
 
-	public ResponseBase createMovimento(int idTipo, int idConto, double importo, XMLGregorianCalendar data) {
-
-		try {
-			ResponseBase rb = new ResponseBase();
-			MovimentoDao.creaMovimento(idTipo, idConto, importo, data);
-			rb.setResult("OK");
-			rb.setErrorCode(0);
-			rb.setErrorDesc("tutto ok");
-
-			return rb;
-
-		} catch (SQLException e) {
-			ResponseBase rb = new ResponseBase();
-			rb.setResult("KO");
-			rb.setErrorCode(4);
-			rb.setErrorDesc("SQL Exception");
-			e.printStackTrace();
-
-		} catch (NamingException e) {
-			ResponseBase rb = new ResponseBase();
-			rb.setResult("KO");
-			rb.setErrorCode(6);
-			rb.setErrorDesc("SQL Exception");
-
-			e.printStackTrace();
-
-		}
-
-		return null;
-
-	}
+//	public ResponseBase createMovimento(int idTipo, int idConto, double importo, XMLGregorianCalendar data) {
+//
+//		try {
+//			ResponseBase rb = new ResponseBase();
+//		MovimentoDao.creaMovimento(idTipo, idConto, importo, data);
+//			rb.setResult("OK");
+//			rb.setErrorCode(0);
+//			rb.setErrorDesc("tutto ok");
+//
+//			return rb;
+//
+//		} catch (SQLException e) {
+//			ResponseBase rb = new ResponseBase();
+//			rb.setResult("KO");
+//			rb.setErrorCode(4);
+//			rb.setErrorDesc("SQL Exception");
+//			e.printStackTrace();
+//
+//		} catch (NamingException e) {
+//			ResponseBase rb = new ResponseBase();
+//			rb.setResult("KO");
+//			rb.setErrorCode(6);
+//			rb.setErrorDesc("SQL Exception");
+//
+//			e.printStackTrace();
+//
+//		}
+//
+//		return null;
+//
+//	}
 
 	public ResponseSelectMovimento selectMovimento(int idConto) {
 
