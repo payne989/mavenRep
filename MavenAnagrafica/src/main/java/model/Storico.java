@@ -1,6 +1,6 @@
 package model;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Storico {
 
@@ -18,6 +18,9 @@ public class Storico {
 		this.idRuolo = idRuolo;
 		this.idImpiegato = idImpiegato;
 		
+	}
+	public Storico() {
+		// TODO Auto-generated constructor stub
 	}
 	public int getId() {
 		return id;

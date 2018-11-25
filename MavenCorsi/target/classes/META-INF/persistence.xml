@@ -7,6 +7,9 @@
 
 	<persistence-unit name="Hib4PU" transaction-type="JTA">
 		<jta-data-source>java:jboss/datasources/corsi</jta-data-source>
+		<class>model.Impiegato</class>
+		<class>model.Ruolo</class>
+		<class>model.Storico</class>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 			<property name="hibernate.show_sql" value="true" />

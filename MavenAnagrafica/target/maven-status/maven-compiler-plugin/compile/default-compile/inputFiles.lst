@@ -1,4 +1,5 @@
 C:\Users\Stefano\git\mavenRep\MavenAnagrafica\src\main\java\webservices\MovimentoWSService.java
+C:\Users\Stefano\git\mavenRep\MavenAnagrafica\src\main\java\ejb\Impiegatoejb.java
 C:\Users\Stefano\git\mavenRep\MavenAnagrafica\src\main\java\webservices\SelectIdConto.java
 C:\Users\Stefano\git\mavenRep\MavenAnagrafica\src\main\java\modelJpa\Sede.java
 C:\Users\Stefano\git\mavenRep\MavenAnagrafica\src\main\java\webservices\SelectAllConto.java
@@ -29,9 +30,11 @@ C:\Users\Stefano\git\mavenRep\MavenAnagrafica\src\main\java\dao\DBconnection.jav
 C:\Users\Stefano\git\mavenRep\MavenAnagrafica\src\main\java\webservices\DeleteConto.java
 C:\Users\Stefano\git\mavenRep\MavenAnagrafica\src\main\java\webservices\MovimentoWSProxy.java
 C:\Users\Stefano\git\mavenRep\MavenAnagrafica\src\main\java\webservices\ResponseBase.java
+C:\Users\Stefano\git\mavenRep\MavenAnagrafica\src\main\java\ejb\Storicoejb.java
 C:\Users\Stefano\git\mavenRep\MavenAnagrafica\src\main\java\modelJpa\Frequenze.java
 C:\Users\Stefano\git\mavenRep\MavenAnagrafica\src\main\java\servlet\FrequenzeServlet.java
 C:\Users\Stefano\git\mavenRep\MavenAnagrafica\src\main\java\servlet\ImpiegatoServlet.java
+C:\Users\Stefano\git\mavenRep\MavenAnagrafica\src\main\java\ejb\Ruoloejb.java
 C:\Users\Stefano\git\mavenRep\MavenAnagrafica\src\main\java\webservices\MovimentoWS.java
 C:\Users\Stefano\git\mavenRep\MavenAnagrafica\src\main\java\modelJpa\Edizione.java
 C:\Users\Stefano\git\mavenRep\MavenAnagrafica\src\main\java\webservices\ResponseConto.java

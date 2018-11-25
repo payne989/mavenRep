@@ -21,7 +21,7 @@ public class FrequenzeDao {
 
 	public boolean insertFrequenze(int idImp, int idEdiz) {
 
-		modelJpa.Frequenze fr = new modelJpa.Frequenze();
+		Frequenze fr = new Frequenze();
 
 		fr.setIdimp(idImp);
 

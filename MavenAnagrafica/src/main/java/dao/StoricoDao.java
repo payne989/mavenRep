@@ -1,183 +1,93 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.sql.Date;
-import com.mysql.jdbc.PreparedStatement;
-import model.Storico;
+
+import javax.persistence.EntityManager;
+import java.util.Date;
+
+import modelJpa.Impiegato;
+import modelJpa.Ruolo;
+import modelJpa.Storico;
+
 
 public class StoricoDao {
 
-	public static ArrayList<Storico> researchByIdImp(int idImp) {
+	private EntityManager em;
 
-		ArrayList<Storico> stor = new ArrayList<Storico>();
-
-		try {
-			// metodo connection importato dalla classe DBconnection
-			Connection con = DBconnection.createConnection();
-
-			// Eseguiamo una query e immagazziniamone i risultati
-			// in un oggetto ResultSet
-			String qry = "SELECT * FROM storico WHERE idimpiegato = ?";
-
-			PreparedStatement preparedStatement = (PreparedStatement) con.prepareStatement(qry);
-
-			preparedStatement.setInt(1, idImp);
-
-			ResultSet res = preparedStatement.executeQuery();
-
-			int id;
-			Date dataInizio;
-			Date dataFine;
-			int idRuolo;
-			int idImpiegato;
-
-			while (res.next()) {
-
-				id = res.getInt("id");
-				dataInizio = res.getDate("dataInizio");
-				dataFine = res.getDate("dataFine");
-				idRuolo = res.getInt("idRuolo");
-				idImpiegato = res.getInt("idImpiegato");
-
-				Storico storico = new Storico(id, dataInizio, dataFine, idRuolo, idImpiegato);
-
-				stor.add(storico);
-
-				for (int i = 0; i < stor.size(); i++) {
-					System.out.println(stor.get(i));
-				}
-			}
-
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			System.err.println("errore");
-
-			e.printStackTrace();
-		}
-		return stor;
+	public StoricoDao() {
+		super();
 	}
 
-	public static void update(int id, Date dataInizio, Date dataFine, int idRuolo, int idImpiegato)
-			throws SQLException {
-		Connection dbConnection = null;
-
-		java.sql.PreparedStatement preparedStatement = null;
-
-		String updateTableSQL = "UPDATE storico SET dataInizio = ?, dataFine = ?, idRuolo = ?, idImpiegato = ? WHERE id = ? ";
-
-		try {
-
-			// metodo connection importato dalla classe DBconnection
-			dbConnection = DBconnection.createConnection();
-
-			preparedStatement = dbConnection.prepareStatement(updateTableSQL);
-
-			preparedStatement.setDate(1, dataInizio);
-			preparedStatement.setDate(2, dataFine);
-			preparedStatement.setInt(3, idRuolo);
-			preparedStatement.setInt(4, idImpiegato);
-			preparedStatement.setInt(5, id);
-
-			// execute update SQL stetement
-			preparedStatement.executeUpdate();
-
-			System.out.println("Record is updated to storico table!");
-
-		} catch (Exception e) {
-
-			e.printStackTrace();
-		} finally {
-
-			if (preparedStatement != null) {
-				preparedStatement.close();
-			}
-
-			if (dbConnection != null) {
-				dbConnection.close();
-			}
-
-		}
+	public StoricoDao(EntityManager em) {
+		super();
+		this.em = em;
 	}
 
-	public static void insert(Storico stor) throws SQLException {
-
-		Connection dbConnection = null;
-
-		java.sql.PreparedStatement preparedStatement = null;
-
-		String updateTableSQL = "INSERT INTO storico (dataInizio, dataFine, idRuolo, idImpiegato) VALUES (?,?,?,?)";
+	public Storico selectStoricoById(int id) {
 
 		try {
-
-			// metodo connection importato dalla classe DBconnection
-			dbConnection = DBconnection.createConnection();
-
-			preparedStatement = dbConnection.prepareStatement(updateTableSQL);
-
-			preparedStatement.setDate(1, stor.getDataInizio());
-			preparedStatement.setDate(2, stor.getDataFine());
-			preparedStatement.setInt(3, stor.getIdRuolo());
-			preparedStatement.setInt(4, stor.getIdImpiegato());
-
-			// execute update SQL stetement
-			preparedStatement.executeUpdate();
-
-			System.out.println("Record is created into storico chart!");
-
+			return em.find(Storico.class, id);
 		} catch (Exception e) {
 
 			e.printStackTrace();
-		} finally {
-
-			if (preparedStatement != null) {
-				preparedStatement.close();
-			}
-
-			if (dbConnection != null) {
-				dbConnection.close();
-			}
-		}
-	}
-
-	public static void delete(int idImp) throws SQLException {
-
-		Connection dbConnection = null;
-
-		java.sql.PreparedStatement preparedStatement = null;
-
-		String updateTableSQL = "DELETE FROM storico WHERE idimpiegato = ?";
-
-		try {
-
-			// metodo connection importato dalla classe DBconnection
-			dbConnection = DBconnection.createConnection();
-
-			preparedStatement = dbConnection.prepareStatement(updateTableSQL);
-
-			preparedStatement.setInt(1, idImp);
-
-			// execute update SQL stetement
-			preparedStatement.executeUpdate();
-
-			System.out.println("Record is deleted from storico chart!");
-
-		} catch (Exception e) {
-
-			e.printStackTrace();
-		} finally {
-
-			if (preparedStatement != null) {
-				preparedStatement.close();
-			}
-
-			if (dbConnection != null) {
-				dbConnection.close();
-			}
+			return null;
 		}
 
 	}
 
+	//public static ArrayList<Storico> researchByIdImp(int idImp) 
+	
+	public boolean updateStorico(int id, int idImp, int idRuo, Date dataIn, Date dataFin) {
+
+		Storico stor= em.find(Storico.class,id);
+    	
+		stor.setDatain(dataIn);
+		stor.setDatafin(dataFin);
+		
+		Impiegato i = em.find(Impiegato.class, idImp);
+		stor.setImpiegato(i);
+		
+		Ruolo r = em.find(Ruolo.class, idRuo);
+		stor.setRuolo(r);
+		
+		
+		try {
+			em.merge(stor);
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		return true;
+	} 
+
+	public boolean insertStorico(int idImpiegato, int idRuolo, Date dataInizio, Date dataFine) {
+
+		Storico stor = new Storico();
+
+		stor.setDatain(dataInizio);
+		stor.setDatain(dataFine);
+
+		Impiegato imp = em.find(Impiegato.class, idImpiegato);
+		stor.setImpiegato(imp);
+		
+		Ruolo ruo = em.find(Ruolo.class, idRuolo);
+		stor.setRuolo(ruo);
+		try {
+			em.persist(ruo);
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+
+		return true;
+
+	}
+
+	public boolean deleteStorico (int id) {
+		
+		Storico stoRes = em.find(Storico.class, id);
+		em.remove(stoRes);
+
+		return true;
+	} 
 }

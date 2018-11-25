@@ -33,7 +33,7 @@ public class EdizioneDao {
 	
 	public boolean updateEdizione(int id, int idSede, int idDocente, Date dataIn, Date dataFin) {
 
-		modelJpa.Edizione ed = em.find(modelJpa.Edizione.class,id);
+		Edizione ed = em.find(Edizione.class,id);
     	
 		ed.setDatain(dataIn);
 		ed.setDatafin(dataFin);

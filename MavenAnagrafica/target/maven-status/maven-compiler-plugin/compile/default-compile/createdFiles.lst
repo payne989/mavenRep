@@ -1,3 +1,4 @@
+ejb\Impiegatoejb.class
 webservices\SelectIdContoResponse.class
 modelJpa\Edizione.class
 webservices\ContoWSServiceLocator.class
@@ -12,6 +13,7 @@ webservices\SQLException.class
 modelJpa\Frequenze.class
 utiliy\Util.class
 model\Storico.class
+ejb\Ruoloejb.class
 webservices\DatatypeConfigurationException.class
 webservices\MovimentoWSProxy.class
 webservices\Movimento.class
@@ -34,6 +36,7 @@ servlet\SedeServlet.class
 webservices\InsertConto.class
 webservices\MovimentoWSServiceSoapBindingStub.class
 model\Ruolo.class
+ejb\Storicoejb.class
 dao\StoricoDao.class
 webservices\ContoWS.class
 webservices\InsertContoResponse.class

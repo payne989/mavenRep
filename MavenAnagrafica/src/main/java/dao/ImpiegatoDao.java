@@ -1,315 +1,100 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-
-import com.mysql.jdbc.PreparedStatement;
-
-import model.Impiegato;
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import modelJpa.Impiegato;
 
 public class ImpiegatoDao {
 
-	public static Impiegato researchById(int id) {
+	private EntityManager em;
 
-		Impiegato imp = new Impiegato();
+	public ImpiegatoDao() {
+		super();
+	}
 
+	public ImpiegatoDao(EntityManager em) {
+		super();
+		this.em = em;
+	}
+
+	public Impiegato selectById(int id) {
 		try {
-			
-			Connection con = DBconnection.createConnection();
-
-			String qry = "SELECT * FROM impiegato WHERE id=?";
-
-			PreparedStatement preparedStatement = (PreparedStatement) con.prepareStatement(qry);
-
-			preparedStatement.setInt(1, id);
-
-			ResultSet res = preparedStatement.executeQuery();
-
-			if (res.next()) {
-				imp.setId(id);
-				imp.setCodFisc(res.getString("codfisc"));
-				imp.setNome(res.getString("nome"));
-				imp.setCognome(res.getString("cognome"));
-
-				System.out.println(imp);
-
-			}
-
+			return em.find(modelJpa.Impiegato.class, id);
 		} catch (Exception e) {
-			System.err.println("errore");
 
 			e.printStackTrace();
+			return null;
 		}
+	}
+
+	public Impiegato selectByCf(String cf) {
+		TypedQuery<Impiegato> qry = em.createQuery("SELECT imp FROM impiegato imp WHERE imp.cf = :cf", Impiegato.class);
+
+		qry.setParameter("cf", cf);
+
+		Impiegato imp = (qry.getSingleResult());
+
 		return imp;
 	}
 
-	public static Impiegato researchByCf(String codfisc) {
+	public ArrayList<Impiegato> selectByNome(String nome) {
 
-		Impiegato imp = new Impiegato();
+		TypedQuery<Impiegato> qry = em.createQuery("SELECT imp FROM IMPIEGATO imp WHERE imp.nome LIKE :nome",
+				Impiegato.class);
 
-		try {
-			
-			Connection con = DBconnection.createConnection();
+		qry.setParameter("nome", "%" + nome + "%");
 
-			String qry = "SELECT * FROM impiegato WHERE codfisc=?";
-
-			PreparedStatement preparedStatement = (PreparedStatement) con.prepareStatement(qry);
-
-			preparedStatement.setString(1, codfisc);
-
-			ResultSet res = preparedStatement.executeQuery();
-
-			if (res.next()) {
-				imp.setId(res.getInt("id"));
-				imp.setCodFisc(codfisc);
-				imp.setNome(res.getString("nome"));
-				imp.setCognome(res.getString("cognome"));
-
-				System.out.println(imp);
-
-			}
-
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			System.err.println("errore");
-
-			e.printStackTrace();
-		}
-		return imp;
+		return new ArrayList<Impiegato>(qry.getResultList());
 	}
 
-	public static ArrayList<Impiegato> researchByNome(String nome) {
+	public ArrayList<Impiegato> researchByCognome(String cognome) {
 
-		ArrayList<Impiegato> impList = new ArrayList<Impiegato>();
+		TypedQuery<Impiegato> qry = em.createQuery("SELECT imp FROM IMPIEGATO imp WHERE imp.cognome LIKE :cognome",
+				Impiegato.class);
 
-		try {
-			// metodo connection importato dalla classe DBconnection
-			Connection con = DBconnection.createConnection();
+		qry.setParameter("nome", "%" + cognome + "%");
 
-			String qry = "SELECT * FROM impiegato WHERE nome=?";
-
-			PreparedStatement preparedStatement = (PreparedStatement) con.prepareStatement(qry);
-
-			preparedStatement.setString(1, nome);
-
-			ResultSet res = preparedStatement.executeQuery();
-
-			while (res.next()) {
-
-				Impiegato impie = new Impiegato();
-
-				impie.setId(res.getInt("id"));
-				impie.setCodFisc(res.getString("codfisc"));
-				impie.setNome(res.getString("nome"));
-				impie.setCognome(res.getString("cognome"));
-
-				impList.add(impie);
-
-				System.out.println(impie);
-
-			}
-
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			System.err.println("errore");
-
-			e.printStackTrace();
-		}
-		return impList;
-	}
-	
-	public static ArrayList<Impiegato> researchByCognome(String cognome) {
-
-		ArrayList<Impiegato> impList = new ArrayList<Impiegato>();
-
-		try {
-			// metodo connection importato dalla classe DBconnection
-			Connection con = DBconnection.createConnection();
-
-			String qry = "SELECT * FROM impiegato WHERE cognome=?";
-
-			PreparedStatement preparedStatement = (PreparedStatement) con.prepareStatement(qry);
-
-			preparedStatement.setString(1, cognome);
-
-			ResultSet res = preparedStatement.executeQuery();
-
-			while (res.next()) {
-
-				Impiegato impie = new Impiegato();
-
-				impie.setId(res.getInt("id"));
-				impie.setCodFisc(res.getString("codfisc"));
-				impie.setNome(res.getString("nome"));
-				impie.setCognome(res.getString("cognome"));
-
-				impList.add(impie);
-				System.out.println(impie);
-				
-			}
-			
-		} catch (Exception e) {
-			
-			System.err.println("errore");
-
-			e.printStackTrace();
-		}
-		return impList;
+		return new ArrayList<Impiegato>(qry.getResultList());
 	}
 
-	public static ArrayList<Impiegato> researchAll() {
+	public ArrayList<Impiegato> SelectAllImp() {
 
-		ArrayList<Impiegato> impList = new ArrayList<Impiegato>();
+		TypedQuery<Impiegato> qry = em.createQuery("SELECT imp FROM IMPIEGATO imp ", Impiegato.class);
 
-		try {
-			// metodo connection importato dalla classe DBconnection
-			Connection con = DBconnection.createConnection();
-
-			String qry = "SELECT * FROM impiegato";
-
-			PreparedStatement preparedStatement = (PreparedStatement) con.prepareStatement(qry);
-
-
-			ResultSet res = preparedStatement.executeQuery();
-
-			while (res.next()) {
-
-				Impiegato impie = new Impiegato();
-
-				impie.setId(res.getInt("id"));
-				impie.setCodFisc(res.getString("codfisc"));
-				impie.setNome(res.getString("nome"));
-				impie.setCognome(res.getString("cognome"));
-
-				impList.add(impie);
-				System.out.println(impie);
-				
-			}
-			
-		} catch (Exception e) {
-			
-			System.err.println("errore");
-
-			e.printStackTrace();
-		}
-		return impList;
+		return new ArrayList<Impiegato>(qry.getResultList());
 	}
-	
-	public static void update(int idImpiegato, String codfisc, String nome, String cognome) throws SQLException {
 
-		Connection dbConnection = null;
-
-		java.sql.PreparedStatement preparedStatement = null;
-
-		String updateTableSQL = "UPDATE impiegato SET codfisc = ?, nome = ?, cognome = ? WHERE id = ? ";
+	public boolean update(Impiegato imp) {
 
 		try {
-
-			dbConnection = DBconnection.createConnection();
-
-			preparedStatement = dbConnection.prepareStatement(updateTableSQL);
-
-			preparedStatement.setString(1, codfisc);
-			preparedStatement.setString(2, nome);
-			preparedStatement.setString(3, cognome);
-			preparedStatement.setInt(4, idImpiegato);
-
-			
-			preparedStatement.executeUpdate();
-
-			System.out.println("Record is updated to DBUSER table!");
-
+			em.merge(imp);
 		} catch (Exception e) {
 
 			e.printStackTrace();
-		} finally {
-
-			if (preparedStatement != null) {
-				preparedStatement.close();
-			}
-
-			if (dbConnection != null) {
-				dbConnection.close();
-			}
-
 		}
+		return true;
 	}
 
-	public static void insert(Impiegato imp) throws SQLException {
-		Connection dbConnection = null;
-		java.sql.PreparedStatement preparedStatement = null;
-
-		String updateTableSQL = "INSERT INTO impiegato (codFisc, nome, cognome) VALUES (?,?,?)";
-
+	public boolean insertImp(Impiegato imp) {
 		try {
-
-			// metodo connection importato dalla classe DBconnection
-			dbConnection = DBconnection.createConnection();
-
-			preparedStatement = dbConnection.prepareStatement(updateTableSQL);
-
-			preparedStatement.setString(1, imp.getCodFisc());
-			preparedStatement.setString(2, imp.getNome());
-			preparedStatement.setString(3, imp.getCognome());
-
-			// execute update SQL stetement
-			preparedStatement.executeUpdate();
-
-			System.out.println("Record is created into impiegato chart!");
-
+			em.persist(imp);
 		} catch (Exception e) {
 
 			e.printStackTrace();
-		} finally {
-
-			if (preparedStatement != null) {
-				preparedStatement.close();
-			}
-
-			if (dbConnection != null) {
-				dbConnection.close();
-			}
 		}
+
+		return true;
 
 	}
 
-	public static void delete(int id) throws SQLException {
-		Connection dbConnection = null;
-		java.sql.PreparedStatement preparedStatement = null;
+	public boolean delete(int id) {
 
-		String updateTableSQL = "DELETE FROM impiegato WHERE id = ?";
+		Impiegato impRes = em.find(Impiegato.class, id);
 
-		try {
+		em.remove(impRes);
 
-			// metodo connection importato dalla classe DBconnection
-			dbConnection = DBconnection.createConnection();
-
-			preparedStatement = dbConnection.prepareStatement(updateTableSQL);
-
-			preparedStatement.setInt(1, id);
-
-			// execute update SQL stetement
-			preparedStatement.executeUpdate();
-
-			System.out.println("Record is deleted from impiegato chart!");
-
-		} catch (Exception e) {
-
-			e.printStackTrace();
-		} finally {
-
-			if (preparedStatement != null) {
-				preparedStatement.close();
-			}
-
-			if (dbConnection != null) {
-				dbConnection.close();
-			}
-		}
-
+		return true;
 	}
 
-	
 }

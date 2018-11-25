@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.ImpiegatoDao;
-import model.Impiegato;
+import modelJpa.Impiegato;
 
 @WebServlet("/ImpiegatoServlet")
 public class ImpiegatoServlet extends HttpServlet {
@@ -34,7 +34,7 @@ public class ImpiegatoServlet extends HttpServlet {
 
 				Impiegato imp = new Impiegato(0, cf, nome, cognome);
 
-				ImpiegatoDao.insert(imp);
+				ImpiegatoDao.insertImp(imp);
 
 				request.getRequestDispatcher("risultatoInserimentoImp.jsp").forward(request, response);
 
@@ -52,7 +52,7 @@ public class ImpiegatoServlet extends HttpServlet {
 			} else if (funzione.equals("cercacf")) {
 
 				String cf = (request.getParameter("codicefiscale"));
-				Impiegato imp = ImpiegatoDao.researchByCf(cf);
+				Impiegato imp = ImpiegatoDao.selectByCf(cf);
 
 				request.setAttribute("impiegato", imp);
 
