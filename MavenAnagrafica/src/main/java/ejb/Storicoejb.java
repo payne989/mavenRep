@@ -1,5 +1,6 @@
 package ejb;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.ejb.LocalBean;
@@ -11,6 +12,7 @@ import dao.StoricoDao;
 import dto.StoricoDTO;
 import ejbInterfaces.StoricoejbLocal;
 import ejbInterfaces.StoricoejbRemote;
+import utiliy.Converter;
 
 @Stateless
 @LocalBean
@@ -55,6 +57,25 @@ public class Storicoejb implements StoricoejbRemote, StoricoejbLocal {
 
 	}
 
-	// public static ArrayList<Storico> researchByIdImp(int idImp) missing
+	public StoricoDTO selectStoricobyId (int id) {
+		
+		StoricoDao sdao = new StoricoDao(em);
+		
+		return Converter.convertStoricoJPA(sdao.selectStoricoById(id));
+		
+		
+		
+	}
+
+	public ArrayList<StoricoDTO> selectAllStorico (int idImp) {
+		
+		StoricoDao sdao = new StoricoDao(em);
+
+		return Converter.convertStoricoJPAList(sdao.selectAll(idImp));
+		
+		
+	}
+
+
 
 }

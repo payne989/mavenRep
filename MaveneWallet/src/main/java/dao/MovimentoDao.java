@@ -1,21 +1,12 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
-
-import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.persistence.EntityManager;
-import javax.sql.DataSource;
-import javax.xml.datatype.DatatypeConfigurationException;
-
+import javax.persistence.TypedQuery;
 import model.Movimento;
-
-
 
 public class MovimentoDao {
 
@@ -30,88 +21,60 @@ public class MovimentoDao {
 		this.em = em;
 	}
 
-//	public static Movimento creaMovimento(int idTipo, int idConto, double importo, Date data)
-//			throws SQLException, NamingException {
-//
-//		Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/MYDSSQL")).getConnection();
-//
-//		if (idTipo == 1) {
-//
-//			String qry = "INSERT INTO movimento	(idtipo, idconto, importo, data) VALUES (?,?,?,?)";
-//
-//			PreparedStatement preparedStatement = con.prepareStatement(qry);
-//
-//			preparedStatement.setInt(1, idTipo);
-//			preparedStatement.setInt(2, idConto);
-//			preparedStatement.setDouble(3, importo);
-//			preparedStatement.setDate(4, data);
-//			preparedStatement.executeUpdate();
-//
-//			ContoDao.modificaConto(idConto, importo);
-//
-//			System.out.println("Record is created into movimento chart!");
-//			System.out.println("Saldo Updated!");
-//		}
-//
-//		else if (idTipo == 2) {
-//
-//			String qry = "INSERT INTO movimento	(idtipo, idconto, importo, data) VALUES (?,?,?,?)";
-//
-//			PreparedStatement preparedStatement = con.prepareStatement(qry);
-//
-//			preparedStatement.setInt(1, idTipo);
-//			preparedStatement.setInt(2, idConto);
-//			preparedStatement.setDouble(3, importo);
-//			preparedStatement.setDate(4, data);
-//
-//			preparedStatement.executeUpdate();
-//
-//			ContoDao.modificaConto(idConto, importo);
-//
-//			System.out.println("Record is created into movimento chart!");
-//			System.out.println("Saldo Updated!");
-//		}
-//		return null;
-//
-//	}
+	public boolean versamento(double importo, int idConto, Date data) {
 
-	public static ArrayList<Movimento> selectAll(int idConto)
-			throws SQLException, NamingException, DatatypeConfigurationException {
+		Movimento mov = new Movimento();
 
-		ArrayList<Movimento> movList = new ArrayList<Movimento>();
+		mov.setIdtipo(2);
+		mov.setIdconto(idConto);
+		mov.setImporto(importo);
+		mov.setData(data);
 
-		Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/MYDSSQL")).getConnection();
+		em.persist(mov);
 
-		String qry = "SELECT * from movimento WHERE idconto = ?";
+		ContoDao co = new ContoDao();
 
-		PreparedStatement preparedStatement = con.prepareStatement(qry);
+		try {
+			co.aggiuntaConto(idConto, importo);
+		} catch (SQLException | NamingException e) {
 
-		preparedStatement.setInt(1, idConto);
-
-		ResultSet res = preparedStatement.executeQuery();
-
-		while (res.next()) {
-
-			Movimento mov = new Movimento();
-
-			mov.setIdmov(res.getInt("idmov"));
-			mov.setIdtipo(res.getInt("idtipo"));
-			mov.setIdconto(idConto);
-			mov.setImporto(res.getDouble("importo"));
-			mov.setData(res.getDate("data"));
-
-			movList.add(mov);
-
-			System.out.println(mov);
-
+			e.printStackTrace();
 		}
 
-		return movList;
+		return true;
+
 	}
-	//Metodo Lista movimenti missing
-	//metodo crea movimento ??
-	
-	//metodo bonifico/prelievo ??
 
+	public boolean prelievo(double importo, int idConto, Date data) {
 
+		Movimento mov = new Movimento();
+
+		mov.setIdtipo(1);
+		mov.setIdconto(idConto);
+		mov.setImporto(importo);
+		mov.setData(data);
+
+		em.persist(mov);
+
+		ContoDao co = new ContoDao();
+
+		try {
+			co.sottraiConto(idConto, importo);
+			return true;
+		} catch (SQLException | NamingException e) {
+
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public ArrayList<Movimento> selectAll(int idConto) {
+
+		TypedQuery<Movimento> qry = em.createQuery("SELECT mov FROM MOVIMENTO mov WHERE mov.idconto = :idconto",
+				Movimento.class);
+
+		qry.setParameter("idconto", idConto);
+
+		return new ArrayList<Movimento>(qry.getResultList());
+	}
 }

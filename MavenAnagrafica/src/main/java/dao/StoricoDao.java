@@ -2,8 +2,9 @@ package dao;
 
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 import java.util.Date;
-
 import modelJpa.Impiegato;
 import modelJpa.Ruolo;
 import modelJpa.Storico;
@@ -34,7 +35,14 @@ public class StoricoDao {
 
 	}
 
-	//public static ArrayList<Storico> researchByIdImp(int idImp) missing
+	public ArrayList<Storico> selectAll(int idImp) {
+
+		TypedQuery<Storico> qry = em.createQuery("SELECT stor FROM Storico stor WHERE stor.idimp = :idimp", Storico.class);
+
+		qry.setParameter("idimp", idImp);
+		
+		return new ArrayList<Storico>(qry.getResultList());
+	}
 	
 	public boolean updateStorico(int id, int idImp, int idRuo, Date dataIn, Date dataFin) {
 

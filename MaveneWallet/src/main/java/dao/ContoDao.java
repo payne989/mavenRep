@@ -1,24 +1,16 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-import javax.sql.DataSource;
-
 import modelJpa.Conto;
-
-
 
 public class ContoDao {
 
 	private EntityManager em;
-	
-	
+
 	public ContoDao() {
 		super();
 	}
@@ -28,23 +20,48 @@ public class ContoDao {
 		this.em = em;
 	}
 
-	public static boolean modificaConto(int idConto, double importo) throws SQLException, NamingException {
+	public boolean aggiuntaConto(int idConto, double importo) throws SQLException, NamingException {
 
-		Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/MYDSSQL")).getConnection();
+		Conto co = selectById(idConto);
 
-		String qry = "UPDATE conto SET saldo = saldo + ? WHERE idconto = ? ";
+		double saldo = co.getSaldo();
 
-		PreparedStatement preparedStatement = con.prepareStatement(qry);
+		saldo = saldo + importo;
 
-		preparedStatement.setDouble(1, importo);
-		preparedStatement.setInt(2, idConto);
+		co.setSaldo(saldo);
 
-		preparedStatement.executeUpdate();
+		try {
+			em.merge(co);
+			return true;
+		} catch (Exception e) {
 
-		return true;
+			e.printStackTrace();
+			return false;
+		}
 
 	}
 
+	public boolean sottraiConto(int idConto, double importo) throws SQLException, NamingException {
+
+		Conto co = selectById(idConto);
+
+		double saldo = co.getSaldo();
+
+		saldo = saldo - importo;
+
+		co.setSaldo(saldo);
+
+		try {
+			em.merge(co);
+			return true;
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			return false;
+		}
+
+	}
+	
 	public ArrayList<Conto> SelectAllConti() {
 
 		TypedQuery<Conto> qry = em.createQuery("SELECT con FROM CONTO con", Conto.class);
@@ -82,6 +99,5 @@ public class ContoDao {
 		return true;
 
 	}
-
 
 }

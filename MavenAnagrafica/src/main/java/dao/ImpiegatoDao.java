@@ -29,6 +29,7 @@ public class ImpiegatoDao {
 	}
 
 	public Impiegato selectByCf(String cf) {
+		
 		TypedQuery<Impiegato> qry = em.createQuery("SELECT imp FROM impiegato imp WHERE imp.cf = :cf", Impiegato.class);
 
 		qry.setParameter("cf", cf);

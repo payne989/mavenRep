@@ -6,7 +6,7 @@ import javax.persistence.TypedQuery;
 import modelJpa.Tipomov;
 
 public class TipoMovDao {
-	
+
 	private EntityManager em;
 
 	public TipoMovDao(EntityManager em) {
@@ -14,11 +14,10 @@ public class TipoMovDao {
 		this.em = em;
 	}
 
-	
 	public TipoMovDao() {
 		super();
 	}
-	
+
 	public ArrayList<Tipomov> SelectAllTipoMov() {
 
 		TypedQuery<Tipomov> qry = em.createQuery("SELECT tm FROM TIPOMOV tm ", Tipomov.class);
@@ -37,42 +36,5 @@ public class TipoMovDao {
 		return true;
 
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
