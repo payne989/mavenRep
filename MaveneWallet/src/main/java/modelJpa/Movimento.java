@@ -35,12 +35,12 @@ public class Movimento implements Serializable {
 	public Movimento() {
 	}
 
-	public int getIdmov() {
+	public int getId() {
 		return this.id;
 	}
 
-	public void setIdmov(int idmov) {
-		this.id = idmov;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public Date getData() {

@@ -6,15 +6,15 @@ import java.util.Date;
 
 public class MovimentoDTO {
 
-	private int idMov;
+	private int id;
 	private int idTtipo;
 	private int idConto;
 	private double importo;
 	private Date data;
 
-	public MovimentoDTO(int idMov, int idTipo, int idConto, double importo, Date data) {
+	public MovimentoDTO(int id, int idTipo, int idConto, double importo, Date data) {
 
-		this.idMov = idMov;
+		this.id = id;
 		this.idTtipo = idTipo;
 		this.idConto = idConto;
 		this.importo = importo;
@@ -25,11 +25,11 @@ public class MovimentoDTO {
 	}
 
 	public int getIdmov() {
-		return idMov;
+		return id;
 	}
 
-	public void setIdmov(int idMov) {
-		this.idMov = idMov;
+	public void setIdmov(int id) {
+		this.id = id;
 	}
 
 	public int getIdtipo() {

@@ -43,12 +43,12 @@
 			<tr>
 			
 				<td><%=i.getId()%></td>
-				<td><%=i.getCodFisc()%></td>
+				<td><%=i.getCf()%></td>
 				<td><%=i.getNome()%></td>
 				<td><%=i.getCognome()%></td>
  				
                 <td> 
-                   <a href="modificaImpiegato.jsp?id=<%=i.getId()%>&nome=<%=i.getNome()%>&cognome=<%=i.getCognome()%>&codfisc=<%=i.getCodFisc()%>" 
+                   <a href="modificaImpiegato.jsp?id=<%=i.getId()%>&nome=<%=i.getNome()%>&cognome=<%=i.getCognome()%>&codfisc=<%=i.getCf()%>" 
 				      class="btn btn-dark" role="button">Aggiorna</a>
 				
 				

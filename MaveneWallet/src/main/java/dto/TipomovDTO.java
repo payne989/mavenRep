@@ -2,10 +2,10 @@ package dto;
 
 public class TipomovDTO {
 
-	private int idTipo;
+	private int id;
 	private String tipo;
 	
-	public TipomovDTO (int idTipo, String tipo) {
+	public TipomovDTO (int id, String tipo) {
 		
 	}
 	
@@ -14,11 +14,11 @@ public class TipomovDTO {
 	}
 
 	public int getIdtipo() {
-		return idTipo;
+		return id;
 	}
 
-	public void setIdtipo(int idTipo) {
-		this.idTipo = idTipo;
+	public void setIdtipo(int id) {
+		this.id = id;
 	}
 
 	public String getTipo() {

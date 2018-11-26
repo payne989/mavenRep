@@ -8,14 +8,14 @@ import java.util.Date;
 
 public class ContoDTO {
 
-	private int idConto;
+	private int id;
 	private double saldo;
 	private Date dataIn;
 	private int idImp;
 
-	public ContoDTO(int idConto, int saldo, Date dataIn, int idImp) {
+	public ContoDTO(int id, int saldo, Date dataIn, int idImp) {
 
-		this.idConto = idConto;
+		this.id = id;
 		this.saldo = saldo;
 		this.dataIn = dataIn;
 		this.idImp = idImp;
@@ -26,11 +26,11 @@ public class ContoDTO {
 	}
 
 	public int getIdconto() {
-		return idConto;
+		return id;
 	}
 
-	public void setIdconto(int idConto) {
-		this.idConto = idConto;
+	public void setIdconto(int id) {
+		this.id = id;
 	}
 
 	public double getSaldo() {

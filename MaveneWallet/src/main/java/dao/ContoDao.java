@@ -20,9 +20,9 @@ public class ContoDao {
 		this.em = em;
 	}
 
-	public boolean aggiuntaConto(int idConto, double importo) throws SQLException, NamingException {
+	public boolean aggiuntaConto(int id, double importo) throws SQLException, NamingException {
 
-		Conto co = selectById(idConto);
+		Conto co = selectById(id);
 
 		double saldo = co.getSaldo();
 
@@ -41,9 +41,9 @@ public class ContoDao {
 
 	}
 
-	public boolean sottraiConto(int idConto, double importo) throws SQLException, NamingException {
+	public boolean sottraiConto(int id, double importo) throws SQLException, NamingException {
 
-		Conto co = selectById(idConto);
+		Conto co = selectById(id);
 
 		double saldo = co.getSaldo();
 
@@ -88,7 +88,7 @@ public class ContoDao {
 		return true;
 	}
 
-	public boolean insertImp(Conto co) {
+	public boolean insertConto(Conto co) {
 		try {
 			em.persist(co);
 		} catch (Exception e) {

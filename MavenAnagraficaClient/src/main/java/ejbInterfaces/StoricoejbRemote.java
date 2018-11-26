@@ -1,5 +1,6 @@
 package ejbInterfaces;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.ejb.Remote;
@@ -16,5 +17,8 @@ public interface StoricoejbRemote {
 	
 	public boolean updateStorico(int id, int idImp, int idRuo, Date dataIn, Date dataFin);
 	
+	public StoricoDTO selectStoricobyId (int id);
+	
+	public ArrayList<StoricoDTO> selectAllStorico (int idImp);
 	
 }

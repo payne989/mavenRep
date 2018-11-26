@@ -26,12 +26,12 @@ public class Tipomov implements Serializable {
 	public Tipomov() {
 	}
 
-	public int getIdtipo() {
+	public int getId() {
 		return this.id;
 	}
 
-	public void setIdtipo(int idtipo) {
-		this.id = idtipo;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getTipo() {

@@ -13,6 +13,7 @@ import dto.ImpiegatoDTO;
 
 @WebServlet("/ImpiegatoServlet")
 public class ImpiegatoServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
 
 	@Resource(mappedName = "java:jboss/exported/MavenAnagrafica-0.0.1-SNAPSHOT/Impiegatoejb!ejbInterfaces.ImpiegatoejbRemote")

@@ -32,12 +32,12 @@ public class Conto implements Serializable {
 	public Conto() {
 	}
 
-	public int getIdconto() {
+	public int getId() {
 		return this.id;
 	}
 
-	public void setIdconto(int idconto) {
-		this.id = idconto;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public Date getDatain() {

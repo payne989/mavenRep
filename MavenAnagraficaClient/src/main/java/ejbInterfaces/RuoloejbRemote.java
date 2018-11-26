@@ -9,7 +9,7 @@ import dto.RuoloDTO;
 @Remote
 public interface RuoloejbRemote {
 
-public boolean insertRuolo(String nome, double stipendio);
+	public boolean insertRuolo(String nome, double stipendio);
 	
 	public boolean deleteRuoloByID(int id);
 	

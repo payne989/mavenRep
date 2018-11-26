@@ -8,11 +8,11 @@ import dto.DocenteDTO;
 import dto.EdizioneDTO;
 import dto.FrequenzeDTO;
 import dto.SedeDTO;
-import model.Corso;
-import model.Docente;
-import model.Edizione;
-import model.Frequenze;
-import model.Sede;
+import modelJpa.Corso;
+import modelJpa.Docente;
+import modelJpa.Edizione;
+import modelJpa.Frequenze;
+import modelJpa.Sede;
 
 public class Converter {
 
@@ -23,11 +23,11 @@ public class Converter {
 		EdizioneDTO edto = new EdizioneDTO();
 
 		edto.setId(ed.getId());
-		edto.setIdCorso(ed.getIdCorso());
-		edto.setIdSede(ed.getIdSede());
-		edto.setIdDocente(ed.getIdDocente());
-		edto.setDataIn(ed.getDataIn());
-		edto.setDataFin(ed.getDataFin());
+		edto.setIdCorso(ed.getCorso().getId());
+		edto.setIdSede(ed.getSede().getId());
+		edto.setIdDocente(ed.getDocente().getId());
+		edto.setDataIn(ed.getDatain());
+		edto.setDataFin(ed.getDatafin());
 
 		return edto;
 	}
@@ -60,8 +60,8 @@ public class Converter {
 		FrequenzeDTO fdto = new FrequenzeDTO();
 
 		fdto.setId(freq.getId());
-		fdto.setIdImp(freq.getIdImp());
-		fdto.setIdEdiz(freq.getIdEdiz());
+		fdto.setIdImp(freq.getIdimp());
+		fdto.setIdEdiz(freq.getEdizione().getId());
 
 		return fdto;
 
@@ -72,7 +72,7 @@ public class Converter {
 		SedeDTO sdto = new SedeDTO();
 
 		sdto.setId(sed.getId());
-		sdto.setNomeSede(sed.getNomeSede());
+		sdto.setNomeSede(sed.getNomesede());
 		sdto.setIndirizzo(sed.getIndirizzo());
 		sdto.setCitta(sed.getCitta());
 

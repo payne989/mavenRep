@@ -10,10 +10,13 @@ utility\Util.class
 dto\SedeDTO.class
 modelJpa\Sede.class
 ejb\Sedeejb.class
+model\Impiegato.class
+model\Ruolo.class
 ejb\Corsoejb.class
 ejb\Frequenzeejb.class
 model\Sede.class
 modelJpa\Frequenze.class
+model\Storico.class
 utility\Converter.class
 dto\FrequenzeDTO.class
 model\Corso.class

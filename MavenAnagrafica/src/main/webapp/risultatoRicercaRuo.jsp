@@ -39,7 +39,7 @@
 			<tr>
 				
 				<td><%=r.getId()%></td>
-				<td><%=r.getNomeRuolo()%></td>
+				<td><%=r.getNomeruolo()%></td>
 				<td><%=r.getStipendio()%></td>
 				
 			</tr>

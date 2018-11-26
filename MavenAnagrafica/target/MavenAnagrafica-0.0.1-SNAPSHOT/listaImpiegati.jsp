@@ -1,6 +1,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.mysql.fabric.xmlrpc.base.Array"%>
-<%@page import="model.Impiegato"%>
+<%@page import="modelJpa.Impiegato"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -43,12 +43,12 @@
 			<tr>
 			
 				<td><%=i.getId()%></td>
-				<td><%=i.getCodFisc()%></td>
+				<td><%=i.getCf()%></td>
 				<td><%=i.getNome()%></td>
 				<td><%=i.getCognome()%></td>
  				
                 <td> 
-                   <a href="modificaImpiegato.jsp?id=<%=i.getId()%>&nome=<%=i.getNome()%>&cognome=<%=i.getCognome()%>&codfisc=<%=i.getCodFisc()%>" 
+                   <a href="modificaImpiegato.jsp?id=<%=i.getId()%>&nome=<%=i.getNome()%>&cognome=<%=i.getCognome()%>&codfisc=<%=i.getCf()%>" 
 				      class="btn btn-dark" role="button">Aggiorna</a>
 				
 				

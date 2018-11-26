@@ -1,4 +1,4 @@
-<%@ page import="model.Impiegato"%>
+<%@ page import="modelJpa.Impiegato"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -22,7 +22,7 @@
 				Impiegato imp = (Impiegato) request.getAttribute("impiegato");
 			%>
 			<b>Id: </b><input type="text" name="id" value="<%=imp.getId()%>"readonly> <br> <br> 
-			<b>Codice Fiscale: </b><input type="text" name="codfisc" value="<%=imp.getCodFisc()%>"> <br><br> 
+			<b>Codice Fiscale: </b><input type="text" name="codfisc" value="<%=imp.getCf()%>"> <br><br> 
 			<b>Nome: </b><input type="text" name="nome"value="<%=imp.getNome()%>"> <br> <br> 
 			<b>Cognome:</b><input type="text" name="cognome" value="<%=imp.getCognome()%>"><br> <br> 
 			

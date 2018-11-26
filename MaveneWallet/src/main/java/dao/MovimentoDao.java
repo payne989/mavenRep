@@ -6,7 +6,7 @@ import java.util.Date;
 import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-import model.Movimento;
+import modelJpa.Movimento;
 
 public class MovimentoDao {
 
@@ -25,8 +25,8 @@ public class MovimentoDao {
 
 		Movimento mov = new Movimento();
 
-		mov.setIdtipo(2);
-		mov.setIdconto(idConto);
+		mov.getTipomov().setId(2);
+		mov.getConto().setId(idConto);;
 		mov.setImporto(importo);
 		mov.setData(data);
 
@@ -49,8 +49,9 @@ public class MovimentoDao {
 
 		Movimento mov = new Movimento();
 
-		mov.setIdtipo(1);
-		mov.setIdconto(idConto);
+		
+		mov.getTipomov().setId(1);
+		mov.getConto().setId(idConto);
 		mov.setImporto(importo);
 		mov.setData(data);
 

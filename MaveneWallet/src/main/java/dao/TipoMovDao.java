@@ -25,7 +25,7 @@ public class TipoMovDao {
 		return new ArrayList<Tipomov>(qry.getResultList());
 	}
 
-	public boolean insertImp(Tipomov tm) {
+	public boolean insertTipoMov(Tipomov tm) {
 		try {
 			em.persist(tm);
 		} catch (Exception e) {

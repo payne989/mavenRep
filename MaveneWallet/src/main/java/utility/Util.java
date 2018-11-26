@@ -48,7 +48,7 @@ public class Util {
 
 		ContoDTO cdto = new ContoDTO();
 
-		cdto.setIdconto(co.getIdconto());
+		cdto.setIdconto(co.getId());
 		cdto.setSaldo(co.getSaldo());
 		cdto.setDatain(co.getDatain());
 		cdto.setIdimp(co.getIdimp());
@@ -73,9 +73,9 @@ public class Util {
 
 	MovimentoDTO mdto = new MovimentoDTO();
 
-		mdto.setIdmov(mov.getIdmov());
-		mdto.setIdtipo(mov.getTipomov().getIdtipo());
-		mdto.setIdconto(mov.getConto().getIdconto());
+		mdto.setIdmov(mov.getId());
+		mdto.setIdtipo(mov.getTipomov().getId());
+		mdto.setIdconto(mov.getConto().getId());
 		mdto.setImporto(mov.getImporto());
 		mdto.setData(mov.getData());
 		
@@ -99,7 +99,7 @@ public class Util {
 
 		TipomovDTO tdto = new TipomovDTO();
 
-		tdto.setIdtipo(tm.getIdtipo());
+		tdto.setIdtipo(tm.getId());
 		tdto.setTipo(tm.getTipo());
 		
 		
